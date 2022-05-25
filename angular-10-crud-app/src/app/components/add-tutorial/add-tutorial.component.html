@@ -1,0 +1,81 @@
+<div class="text-center my-4">
+  <h1>Formulario para añadir un nuevo Iphone</h1>
+  <p>Rcuerda colocar imágenes del mismo tamaño</p>
+  <strong class="text-warning bg-black">Todos los campos son requeridos</strong>
+</div>
+
+<div style="width: 400px; margin: auto;">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Nombre del Iphone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="tutorial.name"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="image">URL de la imagen</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          required
+          [(ngModel)]="tutorial.image"
+          name="image"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="storage">Almacenamiento</label>
+        <input
+          type="number"
+          class="form-control"
+          id="storage"
+          required
+          [(ngModel)]="tutorial.storage"
+          name="storage"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input
+          type="text"
+          class="form-control"
+          id="color"
+          required
+          [(ngModel)]="tutorial.color"
+          name="color"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Cantidad</label>
+        <input
+          type="number"
+          class="form-control"
+          id="quantity"
+          required
+          [(ngModel)]="tutorial.quantity"
+          name="quantity"
+        />
+      </div>
+      <div class="d-grid d-md-flex justify-content-md-end my-4">
+        <button class="btn btn-success" type="button" (click)="saveTutorial()">Añadir</button>
+      </div>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>¡Se ha añadido un nuevo Iphone!</h4>
+      <div class="text-center">
+        <button class="btn btn-success" (click)="newTutorial()">Agregar un nuevo Iphone</button>
+      </div>
+    </div>
+  </div>
+</div>
