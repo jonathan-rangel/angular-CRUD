@@ -5,7 +5,7 @@ import { SmartphoneDetailsComponent } from './components/smartphone-details/smar
 import { AddSmartphoneComponent } from './components/add-smartphone/add-smartphone.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
+  { path: '', redirectTo: 'smartphones', pathMatch: 'full' },
   { path: 'smartphones', component: SmartphonesListComponent },
   { path: 'smartphones/:id', component: SmartphoneDetailsComponent },
   { path: 'add', component: AddSmartphoneComponent }
