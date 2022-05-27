@@ -14,7 +14,7 @@
           class="form-control"
           id="name"
           required
-          [(ngModel)]="tutorial.name"
+          [(ngModel)]="smartphone.name"
           name="name"
         />
       </div>
@@ -26,7 +26,7 @@
           class="form-control"
           id="image"
           required
-          [(ngModel)]="tutorial.image"
+          [(ngModel)]="smartphone.image"
           name="image"
         />
       </div>
@@ -38,7 +38,7 @@
           class="form-control"
           id="storage"
           required
-          [(ngModel)]="tutorial.storage"
+          [(ngModel)]="smartphone.storage"
           name="storage"
         />
       </div>
@@ -50,7 +50,7 @@
           class="form-control"
           id="color"
           required
-          [(ngModel)]="tutorial.color"
+          [(ngModel)]="smartphone.color"
           name="color"
         />
       </div>
@@ -62,19 +62,19 @@
           class="form-control"
           id="quantity"
           required
-          [(ngModel)]="tutorial.quantity"
+          [(ngModel)]="smartphone.quantity"
           name="quantity"
         />
       </div>
       <div class="d-grid d-md-flex justify-content-md-end my-4">
-        <button class="btn btn-success" type="button" (click)="saveTutorial()">Añadir</button>
+        <button class="btn btn-success" type="button" (click)="saveSmartphone()">Añadir</button>
       </div>
     </div>
 
     <div *ngIf="submitted">
       <h4>¡Se ha añadido un nuevo Iphone!</h4>
       <div class="text-center">
-        <button class="btn btn-success" (click)="newTutorial()">Agregar un nuevo Iphone</button>
+        <button class="btn btn-success" (click)="newSmartphone()">Agregar un nuevo Iphone</button>
       </div>
     </div>
   </div>

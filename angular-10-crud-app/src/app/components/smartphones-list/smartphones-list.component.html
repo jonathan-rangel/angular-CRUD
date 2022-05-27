@@ -1,0 +1,68 @@
+<div class="container text-center my-4">
+  <h1 >Iphones</h1>
+</div>
+
+
+<div class="list row justify-content-center">
+  <div class="col-md-6">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="name" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchName()">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table table-dark table-hover text-center">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Opción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="align-middle" *ngFor="let smartphone of smartphones; let i = index" [class.active]="i == currentIndex">
+            <td>{{ smartphone.name }}</td>
+            <td>{{ smartphone.quantity }}</td>
+            <td>
+              <button class="btn btn-info" (click)="setActiveSmartphone(smartphone, i)">
+                <fa-icon [icon]="faCogs"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-danger float-end my-4" (click)="removeAllSmartphones()">
+        Eliminar todos
+      </button>
+    </div>
+    <div class="card" style="width: 18rem;" *ngIf="currentSmartphone">
+      <img src="{{ currentSmartphone.image }}" class="card-img-top" alt="...">
+      <div class="card-header text-center">
+        {{ currentSmartphone.name }}
+      </div>
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <label for=""><strong>Almacenamiento</strong></label>
+          <li class="list-group-item">{{ currentSmartphone.storage }}</li>
+          <label for=""><strong>Color</strong></label>
+          <li class="list-group-item">{{ currentSmartphone.color }}</li>
+          <label for=""><strong>Cantidad</strong></label>
+          <li class="list-group-item">{{ currentSmartphone.quantity }}</li>
+          <label for=""><strong>Stock</strong></label>
+          <li class="list-group-item">{{ currentSmartphone.stock ? "Con stock" : "Sin stock" }}</li>
+        </ul>
+
+        <a href="#" class="float-end mt-4" routerLink="/smartphones/{{ currentSmartphone.id }}">
+          <button class="btn btn-warning">Editar</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

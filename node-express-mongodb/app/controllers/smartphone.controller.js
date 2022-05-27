@@ -1,7 +1,6 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Smartphone = db.smartphones;
 
-// Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
@@ -9,8 +8,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
-  const tutorial = new Tutorial({
+  const smartphone = new Smartphone({
     name: req.body.name,
     image: req.body.image,
     storage: req.body.storage,
@@ -19,55 +17,51 @@ exports.create = (req, res) => {
     stock: req.body.stock ? req.body.stock : true
   });
 
-  // Save Tutorial in the database
-  tutorial
-    .save(tutorial)
+  smartphone
+    .save(smartphone)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Some error occurred while creating the Smartphone."
       });
     });
 };
 
-// Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
 
-  Tutorial.find(condition)
+  Smartphone.find(condition)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving smartphones."
       });
     });
 };
 
-// Find a single Tutorial with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.findById(id)
+  Smartphone.findById(id)
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found Tutorial with id " + id });
+        res.status(404).send({ message: "Not found Smartphone with id " + id });
       else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving Tutorial with id=" + id });
+        .send({ message: "Error retrieving Smartphone with id=" + id });
     });
 };
 
-// Update a Tutorial by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -77,70 +71,67 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Smartphone.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot update Smartphone with id=${id}. Maybe Smartphone was not found!`
         });
-      } else res.send({ message: "Tutorial was updated successfully." });
+      } else res.send({ message: "Smartphone was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating Smartphone with id=" + id
       });
     });
 };
 
-// Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.findByIdAndRemove(id, { useFindAndModify: false })
+  Smartphone.findByIdAndRemove(id, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete Smartphone with id=${id}. Maybe Smartphone was not found!`
         });
       } else {
         res.send({
-          message: "Tutorial was deleted successfully!"
+          message: "Smartphone was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Could not delete Smartphone with id=" + id
       });
     });
 };
 
-// Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  Tutorial.deleteMany({})
+  Smartphone.deleteMany({})
     .then(data => {
       res.send({
-        message: `${data.deletedCount} Tutorials were deleted successfully!`
+        message: `${data.deletedCount} Smartphones were deleted successfully!`
       });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all tutorials."
+          err.message || "Some error occurred while removing all smartphones."
       });
     });
 };
 
-// Find all published Tutorials
 exports.findAllPublished = (req, res) => {
-  Tutorial.find({ published: true })
+  Smartphone.find({ published: true })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving smartphones."
       });
     });
 };
